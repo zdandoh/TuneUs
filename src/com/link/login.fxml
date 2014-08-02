@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="321.0" prefWidth="282.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.link.Controller">
+   <children>
+      <Text layoutX="75.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TuneUs">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <TextField layoutX="94.0" layoutY="114.0" />
+      <TextField layoutX="94.0" layoutY="164.0" />
+      <Text layoutX="14.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="22.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Session:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Button layoutX="91.0" layoutY="210.0" mnemonicParsing="false" text="Join Session">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="104.0" layoutY="261.0" mnemonicParsing="false" text="Create...">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
