@@ -1,0 +1,4 @@
+.idea
+deploy.bat
+out
+*.pyc
