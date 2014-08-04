@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="298.0" fitWidth="266.0">
          <image>
-            <Image url="@resources/images/login_bg.jpg" />
+            <Image url="@resources/images/Background3.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="298.0" fitWidth="266.0" opacity="0.34">

@@ -7,8 +7,10 @@ threadsafe: no
 handlers:
 - url: /chat.py
   script: chat.py
-- url: /session.py
-  script: session.py
+- url: /create_session.py
+  script: create_session.py
+- url: /testdb.py
+  script: testdb.py
 
 libraries:
 - name: jinja2

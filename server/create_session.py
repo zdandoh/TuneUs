@@ -1,21 +1,19 @@
 import sys
 import cgi
 import hashlib
-import uuid
+from uuid import uuid4
 
 sys.stderr = sys.stdout
-#print "Content-type: text/html\n\n";
 
 form = cgi.FieldStorage()
-new_session = form.getvalue("getnew")
+username = form.getvalue("user") # used to set admin
 
 def getUniqueID():
-	unique_id = uuid.uuid4()
+	unique_id = uuid4()
 	m = hashlib.sha1()
 	m.update(str(unique_id))
 	unique_hash = m.hexdigest()
 	return unique_hash
 
-if int(new_session) == 1:
-	#return a new session id
-	print getUniqueID()
+#return a new session id
+session_id = getUniqueID()
