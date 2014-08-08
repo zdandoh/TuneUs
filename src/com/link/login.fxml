@@ -15,7 +15,7 @@
             <Image url="@resources/images/Background3.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="298.0" fitWidth="266.0" opacity="0.34">
+      <ImageView fitHeight="298.0" fitWidth="266.0" layoutX="-2.0" layoutY="-1.0" opacity="0.34">
          <image>
             <Image url="@resources/images/login_bg2.jpg" />
          </image>
@@ -25,12 +25,17 @@
             <Font name="Segoe UI" size="32.0" />
          </font>
       </Text>
-      <TextField layoutX="94.0" layoutY="108.0" />
+      <TextField fx:id="nameField" layoutX="94.0" layoutY="108.0" />
       <TextField layoutX="94.0" layoutY="148.0" />
-      <Button layoutX="89.0" layoutY="205.0" mnemonicParsing="false" text="Join Session!" />
-      <Button layoutX="102.0" layoutY="242.0" mnemonicParsing="false" text="Create..." />
+      <Button layoutX="89.0" layoutY="205.0" mnemonicParsing="false" onAction="#joinAction" text="Join Session!" />
+      <Button layoutX="102.0" layoutY="242.0" mnemonicParsing="false" onAction="#createAction" text="Create..." />
       <Label layoutX="29.0" layoutY="112.0" text="Username:" />
       <Label layoutX="31.0" layoutY="149.0" prefHeight="23.0" prefWidth="56.0" text="Session:" />
+      <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="182.0" prefHeight="15.0" prefWidth="257.0" textFill="RED">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
