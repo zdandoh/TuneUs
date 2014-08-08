@@ -9,6 +9,8 @@ handlers:
   script: chat.py
 - url: /create_session.py
   script: create_session.py
+- url: /get_session.py
+  script: get_session.py
 - url: /testdb.py
   script: testdb.py
 
