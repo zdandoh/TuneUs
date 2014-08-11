@@ -1,10 +1,23 @@
 package com.link;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
 public class Session {
+    HttpClient client = new DefaultHttpClient();
+
     public String readPage(String url_string){
         String result = "failed";
         try {
@@ -24,5 +37,47 @@ public class Session {
         } catch (IOException e){
         }
         return result;
+    }
+
+    public String getBlobURL() throws IOException{
+        HttpGet get_request = new HttpGet("http://tuneusserv.appspot.com/blob/upload_blob.py");
+        HttpResponse response = client.execute(get_request);
+        HttpEntity entity = response.getEntity();
+        InputStream in = entity.getContent();
+        String str = "";
+        while (true) {
+            int ch = in.read();
+            if (ch == -1)
+                break;
+            str += (char) ch;
+        }
+        return str;
+    }
+
+    public boolean uploadBlob(String file_path, String session_id) throws IOException
+    {
+        boolean success = false;
+        String blob_url = getBlobURL();
+        blob_url = blob_url.replace("\n", "");
+        HttpPost post_request = new HttpPost(blob_url);
+
+        File audio_file = new File(file_path);
+        FileBody file_body = new FileBody(audio_file);
+        MultipartEntityBuilder multipart = MultipartEntityBuilder.create();
+        multipart.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+        multipart.addPart("file", file_body);
+        post_request.setEntity(multipart.build());
+        HttpResponse response = client.execute(post_request);
+        HttpEntity ent = response.getEntity();
+        InputStream in = ent.getContent();
+        String str = "";
+        while (true) {
+            int ch = in.read();
+            if (ch == -1)
+                break;
+            str += (char) ch;
+        }
+        System.out.println(str);
+        return success;
     }
 }

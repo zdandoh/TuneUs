@@ -5,18 +5,21 @@ api_version: 1
 threadsafe: no
 
 handlers:
-- url: /chat.py
-  script: chat.py
 - url: /create_session.py
   script: create_session.py
 - url: /get_session.py
   script: get_session.py
 - url: /testdb.py
   script: testdb.py
+- url: /blob/.*
+  script: upload_blob.app
+
 
 libraries:
 - name: jinja2
   version: "2.6"
+- name: webapp2
+  version: "latest"
 - name: markupsafe
   version: "0.15"
 - name: MySQLdb

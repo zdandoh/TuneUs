@@ -14,6 +14,7 @@ public class Main extends Application {
         primaryStage.setTitle("TuneUs");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+        Session session = new Session();
     }
 
     public static void main(String[] args) {

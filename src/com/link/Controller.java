@@ -23,7 +23,7 @@ public class Controller implements Initializable{
 
                 if (newValue.length() < 3 && newValue.length() > 0){errorLabel.setText("Username too short!");}
                 else if (newValue.length() > 16){errorLabel.setText("Username too long!");}
-                else if(newValue.matches("^[A-Za-z0-9_-]*$")== false){errorLabel.setText("Username not valid");}
+                else if(newValue.matches("^[A-Za-z0-9_-]*$") == false){errorLabel.setText("Username not valid");}
                 else {errorLabel.setText("");}
             }
         });
