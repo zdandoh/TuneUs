@@ -7,6 +7,8 @@ from re import match
 
 def isUserValid(username):
     un_valid = False
+    if username == None: # check to make sure it's real
+        return un_valid
     if len(username) < 3:
         print 'username too short'
     elif len(username) > 16:

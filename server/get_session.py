@@ -4,11 +4,24 @@ import database
 from re import match
 
 def isIDValid(session_id):
-    valid = True
-    if not match("^[A-Za-z0-9_-]*$", str(session_id)) or len(session_id) != 40:
-        print 'id not valid'
-        print session_id
-        valid = False
+    valid = False
+    if session_id != None:
+        if match("^[A-Za-z0-9_-]*$", str(session_id)) and len(session_id) == 40:
+            valid = True
+        else:
+            print 'id not valid'
+    return valid
+
+def sessionExists(session_id):
+    valid = False
+    if isIDValid(session_id):
+        db = database.connect()
+        cursor = db.cursor()
+        cursor.execute('SELECT creator FROM data WHERE id = "%s"' % (session_id))
+        for row in cursor.fetchall():
+            if row[0] != None:
+                valid = True
+                break
     return valid
 
 if __name__ == "__main__":
