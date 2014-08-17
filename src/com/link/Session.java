@@ -39,8 +39,8 @@ public class Session {
         return result;
     }
 
-    public String getBlobURL() throws IOException{
-        HttpGet get_request = new HttpGet("http://tuneusserv.appspot.com/blob/upload_blob.py");
+    public String getBlobURL(String session_id) throws IOException{
+        HttpGet get_request = new HttpGet("http://tuneusserv.appspot.com/blob/upload_blob.py?id=" + session_id);
         HttpResponse response = client.execute(get_request);
         HttpEntity entity = response.getEntity();
         InputStream in = entity.getContent();
@@ -57,7 +57,7 @@ public class Session {
     public boolean uploadBlob(String file_path, String session_id) throws IOException
     {
         boolean success = false;
-        String blob_url = getBlobURL();
+        String blob_url = getBlobURL(session_id);
         blob_url = blob_url.replace("\n", "");
         HttpPost post_request = new HttpPost(blob_url);
 
@@ -66,6 +66,7 @@ public class Session {
         MultipartEntityBuilder multipart = MultipartEntityBuilder.create();
         multipart.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         multipart.addPart("file", file_body);
+        multipart.addTextBody("id", session_id);
         post_request.setEntity(multipart.build());
         HttpResponse response = client.execute(post_request);
         HttpEntity ent = response.getEntity();

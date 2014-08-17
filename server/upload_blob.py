@@ -2,9 +2,9 @@ import cgi
 import os
 import urllib
 import webapp2
-import database
 
-from get_session import sessionExists
+from get_session import sessionExists, getData, setData
+from create_session import serialize, deserialize
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
 from google.appengine.ext.webapp.util import run_wsgi_app
@@ -23,9 +23,13 @@ class MainHandler(webapp2.RequestHandler):
 class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
     def post(self):
         upload_files = self.get_uploads('file')  # 'file' is file upload field in the form
+        session_id = self.request.get('id')
         blob_info = upload_files[0]
         self.response.out.write(blob_info.key())
-        #self.redirect('/serve/%s' % blob_info.key())
+
+        new_queue = deserialize(getData("queue", session_id))
+        new_queue.append(str(blob_info.key()))
+        setData("queue", serialize(new_queue), session_id)
 
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
     def get(self, resource):

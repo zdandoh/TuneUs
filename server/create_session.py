@@ -26,6 +26,14 @@ def getUniqueID():
     unique_hash = m.hexdigest()
     return unique_hash
 
+def serialize(data):
+    data = ",".join(data)
+    return data
+
+def deserialize(data):
+    data = data.split(",")
+    return data
+
 if __name__ == "__main__":
     sys.stderr = sys.stdout
 

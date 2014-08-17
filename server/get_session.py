@@ -24,6 +24,26 @@ def sessionExists(session_id):
                 break
     return valid
 
+def getData(field, session_id):
+    if isIDValid(session_id):
+        db = database.connect()
+        cursor = db.cursor()
+        query_string = 'SELECT %s FROM data WHERE id = "%s"' % (field, session_id)
+        cursor.execute(query_string)
+        for row in cursor.fetchall():
+            return str(row[0])
+        db.close()
+
+def setData(field, new_data, session_id):
+    """This function won't check new_data, make sure it is safe!"""
+    if isIDValid(session_id):
+        db = database.connect()
+        cursor = db.cursor()
+        query_string = 'UPDATE data SET %s="%s" WHERE id = "%s"' % (field, new_data, session_id)
+        cursor.execute(query_string)
+        db.commit()
+        db.close()
+
 if __name__ == "__main__":
     sys.stderr = sys.stdout
 
@@ -46,11 +66,7 @@ if __name__ == "__main__":
     print
     if data["id"]:
         #query db for data if id is valid
-        db = database.connect()
-        cursor = db.cursor()
         for field in data.keys():
             if data[field] and field != "id":
-                query_string = 'SELECT %s FROM data WHERE id = "%s"' % (field, data["id"])
-                cursor.execute(query_string)
-                for row in cursor.fetchall():
-                    print field + ":" + str(row[0])
+                query_data = getData(field, data["id"])
+                print field + ":" + query_data
