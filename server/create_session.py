@@ -1,7 +1,8 @@
 import sys
 import cgi
 import hashlib
-import database
+
+from database import Database
 from uuid import uuid4
 from re import match
 
@@ -26,14 +27,6 @@ def getUniqueID():
     unique_hash = m.hexdigest()
     return unique_hash
 
-def serialize(data):
-    data = ",".join(data)
-    return data
-
-def deserialize(data):
-    data = data.split(",")
-    return data
-
 if __name__ == "__main__":
     sys.stderr = sys.stdout
 
@@ -43,7 +36,7 @@ if __name__ == "__main__":
     if isUserValid(username):
         #return a new session id and gather all info
         session_id = getUniqueID()
-        db = database.connect()
+        db = Database(connect=1)
         cursor = db.cursor()
         cursor.execute('INSERT INTO data (id, creator, users) VALUES (%s, %s, %s)', (session_id, username, username + ','))
         db.commit()

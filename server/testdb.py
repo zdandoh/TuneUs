@@ -1,7 +1,4 @@
-import cgi
-import database
+from database import Database
 
-db = database.connect()
-cursor = db.cursor()
-db.commit()
+db = Database(connect=1)
 db.close()

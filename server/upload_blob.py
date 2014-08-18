@@ -3,8 +3,7 @@ import os
 import urllib
 import webapp2
 
-from get_session import sessionExists, getData, setData
-from create_session import serialize, deserialize
+from database import Database
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
 from google.appengine.ext.webapp.util import run_wsgi_app
@@ -12,11 +11,15 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         #check if session id is valid first
+        db = Database(connect=1)
         form = cgi.FieldStorage()
         session_id = form.getvalue("id")
-        if sessionExists(session_id):
-            upload_url = blobstore.create_upload_url('/blob/upload')
-            self.response.out.write(upload_url)
+        if db.sessionExists(session_id):
+            if len(db.getData("queue", session_id)) < 10:
+                upload_url = blobstore.create_upload_url('/blob/upload')
+                self.response.out.write(upload_url)
+            else:
+                self.response.out.write("queue limit reached")
         else:
             self.response.out.write("invalid session id")
 
@@ -25,11 +28,12 @@ class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
         upload_files = self.get_uploads('file')  # 'file' is file upload field in the form
         session_id = self.request.get('id')
         blob_info = upload_files[0]
-        self.response.out.write(blob_info.key())
 
-        new_queue = deserialize(getData("queue", session_id))
+        db = Database(connect=1)
+        new_queue = db.deserialize(db.getData("queue", session_id))
         new_queue.append(str(blob_info.key()))
-        setData("queue", serialize(new_queue), session_id)
+        db.setData("queue", db.serialize(new_queue), session_id)
+        self.response.out.write(blob_info.key())
 
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
     def get(self, resource):

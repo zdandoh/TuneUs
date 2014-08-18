@@ -1,6 +1,6 @@
 import cgi
 import sys
-import database
+from database import Database
 from re import match
 
 def isIDValid(session_id):
@@ -12,40 +12,9 @@ def isIDValid(session_id):
             print 'id not valid'
     return valid
 
-def sessionExists(session_id):
-    valid = False
-    if isIDValid(session_id):
-        db = database.connect()
-        cursor = db.cursor()
-        cursor.execute('SELECT creator FROM data WHERE id = "%s"' % (session_id))
-        for row in cursor.fetchall():
-            if row[0] != None:
-                valid = True
-                break
-    return valid
-
-def getData(field, session_id):
-    if isIDValid(session_id):
-        db = database.connect()
-        cursor = db.cursor()
-        query_string = 'SELECT %s FROM data WHERE id = "%s"' % (field, session_id)
-        cursor.execute(query_string)
-        for row in cursor.fetchall():
-            return str(row[0])
-        db.close()
-
-def setData(field, new_data, session_id):
-    """This function won't check new_data, make sure it is safe!"""
-    if isIDValid(session_id):
-        db = database.connect()
-        cursor = db.cursor()
-        query_string = 'UPDATE data SET %s="%s" WHERE id = "%s"' % (field, new_data, session_id)
-        cursor.execute(query_string)
-        db.commit()
-        db.close()
-
 if __name__ == "__main__":
     sys.stderr = sys.stdout
+    db = Database()
 
     form = cgi.FieldStorage()
     data = {"id": False,
@@ -56,7 +25,7 @@ if __name__ == "__main__":
             "chat": False
             }
     sent_field = form.getvalue("id")
-    if isIDValid(sent_field):
+    if db.isIDValid(sent_field):
         data["id"] = sent_field
     for field in data.keys():
         sent_field = form.getvalue(field)
@@ -66,7 +35,9 @@ if __name__ == "__main__":
     print
     if data["id"]:
         #query db for data if id is valid
+        db.connect()
         for field in data.keys():
             if data[field] and field != "id":
-                query_data = getData(field, data["id"])
+                query_data = db.getData(field, data["id"])
                 print field + ":" + query_data
+        db.close()
