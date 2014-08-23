@@ -33,7 +33,9 @@ public class Controller implements Initializable{
     private void joinAction() {}
 
     @FXML
-    private void createAction() {}
+    private void createAction() {
+
+    }
 
     @FXML
     private TextField nameField;

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.6909547738693468" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="468.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="382.0" prefWidth="433.0">
+         <children>
+            <ProgressIndicator focusTraversable="false" layoutX="214.0" layoutY="36.0" prefHeight="173.0" prefWidth="184.0" progress="0.62" style="-fx-accent: #009999;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></ProgressIndicator>
+            <ListView id="queue" editable="true" focusTraversable="false" layoutX="14.0" layoutY="14.0" prefHeight="290.0" prefWidth="161.0" />
+            <Button id="add_song" layoutX="193.0" layoutY="254.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="83.0" text="Add Song" />
+            <Text layoutX="320.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Session ID:" />
+            <TextArea id="id_box" editable="false" layoutX="299.0" layoutY="278.0" prefHeight="22.0" prefWidth="99.0" text="pp56g85jgh5t7ridihtuuiithy" />
+            <Text layoutX="185.0" layoutY="132.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="TuneUs" wrappingWidth="243.0">
+               <font>
+                  <Font name="Sound System Regular" size="72.0" />
+               </font>
+            </Text>
+            <Rectangle id="percentage_cover" arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="17.0" layoutX="292.0" layoutY="192.0" stroke="#f4f4f4" strokeType="INSIDE" width="29.0" />
+            <Slider id="volume_slider" layoutX="237.0" layoutY="231.0" value="65.0" />
+            <Text layoutX="285.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volume:" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="412.0">
+         <children>
+            <TextField id="chat_bar" layoutX="14.0" layoutY="106.0" prefHeight="22.0" prefWidth="403.0" />
+            <TextArea id="chat_history" editable="false" layoutX="14.0" layoutY="13.0" prefHeight="86.0" prefWidth="403.0" />
+         </children></AnchorPane>
+  </items>
+</SplitPane>
