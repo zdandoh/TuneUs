@@ -11,10 +11,8 @@ handlers:
   script: get_session.py
 - url: /testdb.py
   script: testdb.py
-- url: /create_channel.py
-  script: create_channel.app
-- url: /send_message.py
-  script: send_message.app
+- url: /channel.py
+  script: channel.app
 - url: /blob/.*
   script: upload_blob.app
 
