@@ -8,16 +8,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="298.0" prefWidth="266.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.link.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="298.0" prefWidth="266.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.link.LoginController">
    <children>
       <ImageView fitHeight="298.0" fitWidth="266.0">
          <image>
-            <Image url="@resources/images/Background3.png" />
+            <Image url="@images/Background3.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="298.0" fitWidth="266.0" layoutX="-2.0" layoutY="-1.0" opacity="0.34">
          <image>
-            <Image url="@resources/images/login_bg2.jpg" />
+            <Image url="@images/login_bg2.jpg" />
          </image>
       </ImageView>
       <Text fill="#333333" layoutX="80.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TuneUs">
@@ -27,7 +27,7 @@
       </Text>
       <TextField fx:id="nameField" layoutX="94.0" layoutY="108.0" />
       <TextField layoutX="94.0" layoutY="148.0" />
-      <Button layoutX="89.0" layoutY="205.0" mnemonicParsing="false" onAction="#joinAction" text="Join Session!" />
+      <Button fx:id="joinButton" layoutX="89.0" layoutY="205.0" mnemonicParsing="false" onAction="#joinAction" text="Join Session!" />
       <Button layoutX="102.0" layoutY="242.0" mnemonicParsing="false" onAction="#createAction" text="Create..." />
       <Label layoutX="29.0" layoutY="112.0" text="Nickname:" />
       <Label layoutX="31.0" layoutY="149.0" prefHeight="23.0" prefWidth="56.0" text="Session:" />

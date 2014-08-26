@@ -10,10 +10,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/link/resources/gui/login.fxml"));
         primaryStage.setTitle("TuneUs");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
         Session session = new Session();
     }
 

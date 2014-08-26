@@ -10,7 +10,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.6909547738693468" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="468.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.6909547738693468" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="468.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.link.MainController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="382.0" prefWidth="433.0">
          <children>
@@ -19,7 +19,7 @@
                   <Insets />
                </opaqueInsets></ProgressIndicator>
             <ListView id="queue" editable="true" focusTraversable="false" layoutX="14.0" layoutY="14.0" prefHeight="290.0" prefWidth="161.0" />
-            <Button id="add_song" layoutX="193.0" layoutY="254.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="83.0" text="Add Song" />
+            <Button id="add_song" onAction="#addSong" layoutX="193.0" layoutY="254.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="83.0" text="Add Song" />
             <Text layoutX="320.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Session ID:" />
             <TextArea id="id_box" editable="false" layoutX="299.0" layoutY="278.0" prefHeight="22.0" prefWidth="99.0" text="pp56g85jgh5t7ridihtuuiithy" />
             <Text layoutX="185.0" layoutY="132.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="TuneUs" wrappingWidth="243.0">
@@ -33,8 +33,8 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="412.0">
          <children>
-            <TextField id="chat_bar" layoutX="14.0" layoutY="106.0" prefHeight="22.0" prefWidth="403.0" />
-            <TextArea id="chat_history" editable="false" layoutX="14.0" layoutY="13.0" prefHeight="86.0" prefWidth="403.0" />
+            <TextField fx:id="chat_bar" layoutX="14.0" layoutY="106.0" prefHeight="22.0" prefWidth="403.0" />
+            <TextArea id="chat_history"  editable="false" layoutX="14.0" layoutY="13.0" prefHeight="86.0" prefWidth="403.0" />
          </children></AnchorPane>
   </items>
 </SplitPane>

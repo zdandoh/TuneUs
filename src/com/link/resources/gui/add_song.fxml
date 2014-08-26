@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="273.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <Separator layoutX="152.0" layoutY="123.0" prefHeight="3.0" prefWidth="121.0" />
+      <Label layoutX="130.0" layoutY="113.0" text="or" textAlignment="CENTER" textFill="#797979">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="92.0" layoutY="14.0" text="Import Song">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="12.0" layoutY="62.0" />
+      <Button layoutX="189.0" layoutY="62.0" mnemonicParsing="false" text="Browse..." />
+      <Label layoutX="86.0" layoutY="140.0" text="From Youtube">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="194.0" text="Youtube URL" />
+      <TextField layoutX="102.0" layoutY="190.0" />
+      <Separator layoutY="121.0" prefHeight="3.0" prefWidth="121.0" />
+   </children>
+</Pane>
