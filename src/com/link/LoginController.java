@@ -12,13 +12,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import javax.xml.soap.Text;
 import java.io.IOException;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable{
-
+    String session_id = "";
+    String nickname = "";
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         nameField.textProperty().addListener(new ChangeListener<String>() {
@@ -34,6 +36,8 @@ public class LoginController implements Initializable{
         });
     }
 
+    @FXML
+    private TextField sessionField;
 
     @FXML
     private TextField nameField;
@@ -45,7 +49,8 @@ public class LoginController implements Initializable{
     private Button joinButton;
 
     @FXML
-    private void joinAction() {
+    private void joinAction(){
+        System.out.println(nameField.getText());
         Parent root;
         try {
             Stage stage = (Stage) joinButton.getScene().getWindow();
@@ -56,13 +61,20 @@ public class LoginController implements Initializable{
             stage.setTitle("TuneUs");
             stage.setScene(new Scene(root));
             stage.show();
-
         } catch (IOException e) {e.printStackTrace();}
     }
 
     @FXML
     private void createAction() {
-
+        nickname = nameField.getText();
+        if(nickname.length() > 0){
+            errorLabel.setText("Creating...");
+            session_id = Main.session.readPage(Main.session.getUrl("CREATE_SESSION") + "?user=" + nickname);
+            joinAction();
+        }
+        else{
+            errorLabel.setText("No nickname!");
+        }
     }
 
 }

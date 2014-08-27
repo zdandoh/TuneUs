@@ -7,15 +7,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
+    public static Session session = new Session();
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/com/link/resources/gui/login.fxml"));
         primaryStage.setTitle("TuneUs");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
-        Session session = new Session();
     }
 
     public static void main(String[] args) {

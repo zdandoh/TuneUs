@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 public class Session {
+    String session_id = "";
     HttpClient client = new DefaultHttpClient();
 
     public String readPage(String url_string){
@@ -52,6 +53,19 @@ public class Session {
             str += (char) ch;
         }
         return str;
+    }
+
+    public String getUrl(String key) throws IllegalArgumentException{
+        //Gets API urls by key
+        String url = "";
+        switch(key){
+            case "CREATE_SESSION":
+                url = "http://tuneusserv.appspot.com/create_session.py";
+                break;
+            default:
+                throw new IllegalArgumentException("Url key not valid");
+        }
+        return url;
     }
 
     public boolean uploadBlob(String file_path, String session_id) throws IOException
