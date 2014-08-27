@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import javax.xml.soap.Text;
 import java.io.IOException;
 
 import java.net.URL;
@@ -51,16 +50,25 @@ public class LoginController implements Initializable{
     @FXML
     private void joinAction(){
         Parent root;
-        try {
-            Stage stage = (Stage) joinButton.getScene().getWindow();
-            stage.close();
+        Stage stage = (Stage) joinButton.getScene().getWindow();
 
-            root = FXMLLoader.load(getClass().getResource("/com/link/resources/gui/main.fxml"));
-            stage = new Stage();
-            stage.setTitle("TuneUs");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {e.printStackTrace();}
+        nickname = nameField.getText();
+        if(nickname.length() > 0 && errorLabel.getText().length() == 0){
+            try {
+                stage.close();
+                root = FXMLLoader.load(getClass().getResource("/com/link/resources/gui/main.fxml"));
+                stage = new Stage();
+                stage.setTitle("TuneUs");
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {e.printStackTrace();}
+
+        }
+        else {
+                 ErrorDialog dialog = new ErrorDialog("Error", "Invalid Nickname!", 175, 100);
+                 dialog.show();
+             }
+
     }
 
     @FXML

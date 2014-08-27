@@ -26,15 +26,12 @@ public class SongController implements Initializable {
             public void handle(ActionEvent event) {
                 FileChooser fileChooser = new FileChooser();
 
-                //Set extension filter
-
                 FileChooser.ExtensionFilter mFilter = new FileChooser.ExtensionFilter("MP3 files (*.mp3)", "*.mp3");
                 FileChooser.ExtensionFilter fFilter = new FileChooser.ExtensionFilter("FLAC files (*.flac)", "*.flac");
 
                 fileChooser.getExtensionFilters().add(fFilter);
                 fileChooser.getExtensionFilters().add(mFilter);
 
-                //Show open file dialog
                 file = fileChooser.showOpenDialog(null);
 
                 dirText.setText(file.getPath());
@@ -52,12 +49,17 @@ public class SongController implements Initializable {
 
     @FXML
     private void addSong(){
-        if(!(dirText.getText() == "")){
-            System.out.println("Import");
+        if(dirText.getText().length() > 0){
+            if(!file.exists()){
+                ErrorDialog dialog = new ErrorDialog("File Error", "The selected file does not exist!", 175, 100);
+                dialog.show();
+            }
+            else{
+                //Do something with file
+            }
         }
-        else if (!(tubeUrl.getText() == "")){
+        if (tubeUrl.getText().length() > 0){
             //Do stuff to fetch song from YouTube
-            System.out.println("YouTube");
         }
 
         Stage stage = (Stage) tubeUrl.getScene().getWindow();
