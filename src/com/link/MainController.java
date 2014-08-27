@@ -23,16 +23,16 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        chat_bar.setOnKeyPressed(new EventHandler<KeyEvent>()
-        {
-            @Override
-            public void handle(KeyEvent ke)
-            {
-                if (ke.getCode().equals(KeyCode.ENTER))
+                    public void initialize(URL location, ResourceBundle resources) {
+                chat_bar.setOnKeyPressed(new EventHandler<KeyEvent>()
+                {
+                    @Override
+                    public void handle(KeyEvent ke)
+                    {
+                        if (ke.getCode().equals(KeyCode.ENTER))
 
                 {
-                    System.out.println(chat_bar.getText());
+                    //Do stuff with the sent chat message
                 }
             }
         });
@@ -44,7 +44,6 @@ public class MainController implements Initializable {
 
     @FXML
     private void addSong(){
-        System.out.println("swg");
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getResource("/com/link/resources/gui/add_song.fxml"));

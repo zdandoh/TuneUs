@@ -50,7 +50,6 @@ public class LoginController implements Initializable{
 
     @FXML
     private void joinAction(){
-        System.out.println(nameField.getText());
         Parent root;
         try {
             Stage stage = (Stage) joinButton.getScene().getWindow();
@@ -67,13 +66,11 @@ public class LoginController implements Initializable{
     @FXML
     private void createAction() {
         nickname = nameField.getText();
-        if(nickname.length() > 0){
+        System.out.println(errorLabel.getText().length());
+        if(nickname.length() > 0 && errorLabel.getText().length() == 0){
             errorLabel.setText("Creating...");
             session_id = Main.session.readPage(Main.session.getUrl("CREATE_SESSION") + "?user=" + nickname);
             joinAction();
-        }
-        else{
-            errorLabel.setText("No nickname!");
         }
     }
 
