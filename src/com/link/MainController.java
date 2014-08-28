@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -21,18 +22,18 @@ import java.util.ResourceBundle;
  * Created by Chris on 8/25/2014.
  */
 public class MainController implements Initializable {
-
+    String user = String.format("<%s> ", LoginController.nickname);
     @Override
-                    public void initialize(URL location, ResourceBundle resources) {
-                chat_bar.setOnKeyPressed(new EventHandler<KeyEvent>()
-                {
-                    @Override
-                    public void handle(KeyEvent ke)
-                    {
-                        if (ke.getCode().equals(KeyCode.ENTER))
-
-                {
-                    //Do stuff with the sent chat message
+    public void initialize(URL location, ResourceBundle resources) {
+        chat_bar.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent ke) {
+                if (ke.getCode().equals(KeyCode.ENTER)) {
+                    if (!chat_bar.getText().trim().isEmpty()) {
+                        chat_history.appendText(user + chat_bar.getText() + "\n");
+                        chat_bar.clear();
+                        //Do stuff with the sent chat message
+                    }
                 }
             }
         });
@@ -41,6 +42,9 @@ public class MainController implements Initializable {
 
     @FXML
     private TextField chat_bar;
+
+    @FXML
+    private TextArea chat_history;
 
     @FXML
     private void addSong(){

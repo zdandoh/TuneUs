@@ -1,15 +1,18 @@
 package com.link;
 
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -49,23 +52,31 @@ public class SongController implements Initializable {
 
     @FXML
     private void addSong(){
+        file = new File(dirText.getText());
+        Stage stage = (Stage) tubeUrl.getScene().getWindow();
+
         if(dirText.getText().length() > 0){
             if(!file.exists()){
                 ErrorDialog dialog = new ErrorDialog("File Error", "The selected file does not exist!", 175, 100);
                 dialog.show();
             }
             else{
+                stage.close();
                 //Do something with file
             }
         }
-        if (tubeUrl.getText().length() > 0){
-            //Do stuff to fetch song from YouTube
+        else if (tubeUrl.getText().length() > 0) {
+            if (tubeUrl.getText().startsWith("https://www.youtube.com/")) {
+                //do stuff with url
+                stage.close();
+            }
+            else{
+                ErrorDialog dialog = new ErrorDialog("URL Error", "The entered URL is not valid", 175, 100);
+                dialog.show();
+            }
         }
-
-        Stage stage = (Stage) tubeUrl.getScene().getWindow();
-        stage.close();
-
+        else{ErrorDialog dialog = new ErrorDialog("Error", "Select a file from your computer, or load a song from YouTube", 225, 100);
+            dialog.show();}
     }
-
 
 }

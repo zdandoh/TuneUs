@@ -18,6 +18,7 @@ import javafx.geometry.Pos;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.StageStyle;
 
 
 /**
@@ -26,7 +27,6 @@ import javafx.scene.layout.BorderPane;
 
 
 public class ErrorDialog extends Stage {
-
 
     public ErrorDialog(String title, String message, int width, int height) {
         super();

@@ -29,9 +29,9 @@
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="194.0" text="Youtube URL" />
-      <TextField fx:id="tubeUrl" layoutX="102.0" layoutY="190.0" />
+      <Label layoutX="26.0" layoutY="194.0" text="Youtube URL" />
+      <TextField fx:id="tubeUrl" layoutX="106.0" layoutY="190.0" />
       <Separator layoutY="121.0" prefHeight="3.0" prefWidth="121.0" />
-      <Button onAction="#addSong" layoutX="94.0" layoutY="240.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="88.0" text="Add song" />
+      <Button layoutX="94.0" layoutY="240.0" mnemonicParsing="false" onAction="#addSong" prefHeight="25.0" prefWidth="88.0" text="Add song" />
    </children>
 </Pane>

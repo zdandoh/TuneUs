@@ -34,7 +34,7 @@
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="412.0">
          <children>
             <TextField fx:id="chat_bar" layoutX="14.0" layoutY="106.0" prefHeight="22.0" prefWidth="403.0" />
-            <TextArea id="chat_history"  editable="false" layoutX="14.0" layoutY="13.0" prefHeight="86.0" prefWidth="403.0" />
+            <TextArea fx:id="chat_history"  editable="false" layoutX="14.0" layoutY="13.0" prefHeight="86.0" prefWidth="403.0" />
          </children></AnchorPane>
   </items>
 </SplitPane>

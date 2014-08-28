@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable{
     String session_id = "";
-    String nickname = "";
+    static String nickname = "";
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         nameField.textProperty().addListener(new ChangeListener<String>() {
