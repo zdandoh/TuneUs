@@ -1,5 +1,6 @@
 package com.link;
 
+import edu.gvsu.cis.masl.channelAPI.ChannelAPI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
