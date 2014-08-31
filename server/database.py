@@ -37,7 +37,11 @@ class Database():
             query_string = 'SELECT %s FROM data WHERE id = "%s"' % (field, session_id)
             cursor.execute(query_string)
             for row in cursor.fetchall():
-                return str(row[0])
+                raw_result = row[0]
+                if raw_result != None:
+                    return str(raw_result)
+                else:
+                    return ""
 
     def setData(self, field, new_data, session_id):
         """This function won't check new_data, make sure it is safe!"""

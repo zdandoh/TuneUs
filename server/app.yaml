@@ -11,8 +11,8 @@ handlers:
   script: get_session.py
 - url: /testdb.py
   script: testdb.py
-- url: /channel.py
-  script: channel.app
+- url: /poll_chat.py
+  script: poll_chat.py
 - url: /blob/.*
   script: upload_blob.app
 
