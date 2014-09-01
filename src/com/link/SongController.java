@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -63,6 +64,13 @@ public class SongController implements Initializable {
             else{
                 stage.close();
                 //Do something with file
+                try {
+                    Main.session.uploadBlob(dirText.getText(), Main.session.session_id);
+                }
+                catch(IOException e) {
+                    ErrorDialog dialog = new ErrorDialog("Upload Error", "Failed to upload file.", 175, 100);
+                    dialog.show();
+                }
             }
         }
         else if (tubeUrl.getText().length() > 0) {

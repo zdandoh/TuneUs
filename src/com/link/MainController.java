@@ -25,20 +25,27 @@ public class MainController implements Initializable {
     String user = String.format("<%s> ", LoginController.nickname);
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        id_box.setText(Main.session.session_id);
+        // Setup chat bar event handler
         chat_bar.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent ke) {
                 if (ke.getCode().equals(KeyCode.ENTER)) {
                     if (!chat_bar.getText().trim().isEmpty()) {
                         chat_history.appendText(user + chat_bar.getText() + "\n");
+                        String message = chat_bar.getText();
                         chat_bar.clear();
                         //Do stuff with the sent chat message
+                        String data = String.format("?id=%s&message=%s", Main.session.session_id, message);
+                        Main.session.readPage(Main.session.getUrl("SEND_MESSAGE") + data);
                     }
                 }
             }
         });
     }
 
+    @FXML
+    private TextArea id_box;
 
     @FXML
     private TextField chat_bar;

@@ -55,6 +55,7 @@ public class LoginController implements Initializable{
         nickname = nameField.getText();
         if(nickname.length() > 0 && errorLabel.getText().length() == 0){
             try {
+                Main.session.session_id = sessionField.getText();
                 stage.close();
                 root = FXMLLoader.load(getClass().getResource("/com/link/resources/gui/main.fxml"));
                 stage = new Stage();
@@ -62,7 +63,6 @@ public class LoginController implements Initializable{
                 stage.setScene(new Scene(root));
                 stage.show();
             } catch (IOException e) {e.printStackTrace();}
-
         }
         else {
                  ErrorDialog dialog = new ErrorDialog("Error", "Invalid Nickname!", 175, 100);
@@ -74,10 +74,9 @@ public class LoginController implements Initializable{
     @FXML
     private void createAction() {
         nickname = nameField.getText();
-        System.out.println(errorLabel.getText().length());
         if(nickname.length() > 0 && errorLabel.getText().length() == 0){
-            errorLabel.setText("Creating...");
-            session_id = Main.session.readPage(Main.session.getUrl("CREATE_SESSION") + "?user=" + nickname);
+            Main.session.session_id = Main.session.readPage(Main.session.getUrl("CREATE_SESSION") + "?user=" + nickname).replace("\n", "");
+            sessionField.setText(Main.session.session_id);
             joinAction();
         }
     }

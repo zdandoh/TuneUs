@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 public class Session {
-    String session_id = "";
+    public String session_id = "";
     HttpClient client = new DefaultHttpClient();
 
     public String readPage(String url_string){
@@ -62,6 +62,9 @@ public class Session {
             case "CREATE_SESSION":
                 url = "http://tuneusserv.appspot.com/create_session.py";
                 break;
+            case "SEND_MESSAGE":
+                url = "http://tuneusserv.appspot.com/poll_chat.py";
+                break;
             default:
                 throw new IllegalArgumentException("Url key not valid");
         }
@@ -92,7 +95,6 @@ public class Session {
                 break;
             str += (char) ch;
         }
-        System.out.println(str);
         return success;
     }
 }
