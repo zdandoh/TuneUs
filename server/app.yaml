@@ -13,6 +13,8 @@ handlers:
   script: testdb.py
 - url: /poll_chat.py
   script: poll_chat.py
+- url: /add_video.py
+  script: add_video.py
 - url: /blob/.*
   script: upload_blob.app
 

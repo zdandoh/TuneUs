@@ -76,6 +76,9 @@ public class SongController implements Initializable {
         else if (tubeUrl.getText().length() > 0) {
             if (tubeUrl.getText().startsWith("https://www.youtube.com/")) {
                 //do stuff with url
+                String tube_id[] = tubeUrl.getText().split("v=");
+                String data = String.format("?id=%s&video=%s", Main.session.session_id,tube_id[1]);
+                Main.session.readPage(Main.session.getUrl("ADD_VIDEO") + data);
                 stage.close();
             }
             else{

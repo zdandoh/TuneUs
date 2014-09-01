@@ -16,14 +16,15 @@ class Database():
         data = data.split(",")
         return data
 
-    def isIDValid(self, session_id):
+    def isIDValid(self, session_id, length_check=True):
         valid = False
         if session_id != None:
-            if match("^[A-Za-z0-9_-]*$", str(session_id)) and len(session_id) == 40:
+            if match("^[A-Za-z0-9_-]*$", str(session_id)) and (not length_check or len(session_id) == 40):
                 valid = True
-            else:
-                print 'id not valid'
         return valid
+
+    def isStringSafe(self, string):
+        return self.isIDValid(string, length_check=False)
 
     def sessionExists(self, session_id):
         valid = False

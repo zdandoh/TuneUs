@@ -65,6 +65,9 @@ public class Session {
             case "SEND_MESSAGE":
                 url = "http://tuneusserv.appspot.com/poll_chat.py";
                 break;
+            case "ADD_VIDEO":
+                url = "http://tuneusserv.appspot.com/add_video.py";
+                break;
             default:
                 throw new IllegalArgumentException("Url key not valid");
         }
