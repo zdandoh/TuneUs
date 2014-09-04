@@ -66,6 +66,7 @@ public class SongController implements Initializable {
                 //Do something with file
                 try {
                     Main.session.uploadBlob(dirText.getText(), Main.session.session_id);
+                    Main.queue.addSong(dirText.getText());
                 }
                 catch(IOException e) {
                     ErrorDialog dialog = new ErrorDialog("Upload Error", "Failed to upload file.", 175, 100);
