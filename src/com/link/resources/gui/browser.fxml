@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.link.BrowserController">
+   <children>
+      <Label layoutX="130.0" layoutY="14.0" text="Session Browser">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="130.0" layoutY="56.0" prefHeight="25.0" prefWidth="178.0" />
+      <Button layoutX="322.0" layoutY="56.0" mnemonicParsing="false" text="Search" />
+      <Button fx:id="joinButton" layoutX="155.0" layoutY="359.0" onAction="#joinAction" mnemonicParsing="false" text="Join Session" />
+      <TableView layoutX="16.0" layoutY="98.0" prefHeight="245.0" prefWidth="358.0">
+        <columns>
+          <TableColumn minWidth="20.0" prefWidth="100.0" text="Creator" />
+          <TableColumn prefWidth="75.0" text="Users" />
+        </columns>
+      </TableView>
+      <ComboBox layoutX="16.0" layoutY="56.0" prefHeight="25.0" prefWidth="101.0" promptText="Search by:" >
+       <items>
+           <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Creator" />
+               <String fx:value="Users" />
+               <String fx:value="Bleh" />
+           </FXCollections>
+       </items>
+     </ComboBox>
+   </children>
+</Pane>
