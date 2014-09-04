@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     public static Session session = new Session();
-    public static Queue queue = new Queue();
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/com/link/resources/gui/login.fxml"));
