@@ -20,7 +20,7 @@ public class Session {
     HttpClient client = new DefaultHttpClient();
 
     public String readPage(String url_string){
-        String result = "failed";
+        String result = "failed page load";
         try {
             URL send_url = new URL(url_string);
             InputStream input = send_url.openStream();
@@ -67,6 +67,9 @@ public class Session {
                 break;
             case "ADD_VIDEO":
                 url = "http://tuneusserv.appspot.com/add_video.py";
+                break;
+            case "SEARCH_BY":
+                url = "http://tuneusserv.appspot.com/search_by.py";
                 break;
             default:
                 throw new IllegalArgumentException("Url key not valid");

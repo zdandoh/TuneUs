@@ -53,10 +53,10 @@ public class SongController implements Initializable {
 
     @FXML
     private void addSong(){
-        file = new File(dirText.getText());
         Stage stage = (Stage) tubeUrl.getScene().getWindow();
 
         if(dirText.getText().length() > 0){
+            file = new File(dirText.getText());
             if(!file.exists()){
                 ErrorDialog dialog = new ErrorDialog("File Error", "The selected file does not exist!", 175, 100);
                 dialog.show();
