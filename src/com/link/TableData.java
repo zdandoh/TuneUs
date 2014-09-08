@@ -6,10 +6,10 @@ import javafx.beans.property.SimpleStringProperty;
  * Created by Dan on 9/7/2014.
  */
 public class TableData {
-    private SimpleStringProperty creator = new SimpleStringProperty();
-    private SimpleStringProperty users = new SimpleStringProperty();
-    private SimpleStringProperty creation_time = new SimpleStringProperty();
-    private SimpleStringProperty session_id = new SimpleStringProperty();
+    private SimpleStringProperty creator;
+    private SimpleStringProperty users;
+    private SimpleStringProperty creation_time;
+    private SimpleStringProperty session_id;
 
     public TableData(String table_info){
         //data structure: "id;creator;users;create_time"

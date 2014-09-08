@@ -67,7 +67,7 @@ public class LoginController implements Initializable{
                 stage.close();
                 root = FXMLLoader.load(getClass().getResource("/com/link/resources/gui/browser.fxml"));
                 stage = new Stage();
-                stage.setTitle("TuneUs");
+                stage.setTitle("Session Browser");
                 stage.setScene(new Scene(root));
                 stage.show();
             } catch (IOException e) {e.printStackTrace();}

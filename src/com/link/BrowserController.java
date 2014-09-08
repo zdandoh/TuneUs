@@ -1,20 +1,18 @@
 package com.link;
 
-
-import edu.gvsu.cis.masl.channelAPI.ChannelAPI;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -46,7 +44,7 @@ public class BrowserController implements Initializable {
     private ComboBox search_selector;
 
     @FXML
-    private javafx.scene.control.TextField search_bar;
+    private TextField search_bar;
 
     private ObservableList<TableData> data = FXCollections.observableArrayList();
 
@@ -58,6 +56,27 @@ public class BrowserController implements Initializable {
                 new PropertyValueFactory<TableData, String>("users"));
         recent_column.setCellValueFactory(
                 new PropertyValueFactory<TableData, String>("creation_time"));
+
+        dataTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getClickCount() > 1) {
+                    joinAction();
+                }
+            }
+        });
+
+        dataTable.getColumns().addListener(new ListChangeListener() {
+            @Override
+            public void onChanged(Change change) {
+                change.next();
+                if(change.wasReplaced()) {
+                    dataTable.getColumns().clear();
+                    dataTable.getColumns().addAll(creator_column, users_column, recent_column);
+                }
+            }
+        });
+
     }
 
     @FXML
@@ -66,7 +85,6 @@ public class BrowserController implements Initializable {
         String search_result[] = searchQuery((String)search_selector.getValue(), search_bar.getText());
         for(String result: search_result){
             TableData table_row = new TableData(result);
-            System.out.println(table_row.getCreator() + table_row.getRecent() + table_row.getUsers());
             data.add(table_row);
         }
         dataTable.setItems(data);
@@ -79,19 +97,37 @@ public class BrowserController implements Initializable {
 
     @FXML
     private void joinAction() {
-        Parent root;
-        searchTable();
-        Stage stage = (Stage) joinButton.getScene().getWindow();
         try {
-            //assign session id
-            stage.close();
-            root = FXMLLoader.load(getClass().getResource("/com/link/resources/gui/browser.fxml"));
-            stage = new Stage();
-            stage.setTitle("TuneUs");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+            TableView.TableViewSelectionModel selectionModel = dataTable.getSelectionModel();
+            TableData selected = (TableData) selectionModel.getSelectedItem();
+            //do stuff with session_id
+            System.out.println(selected.getID());
+
+            openMain();
+        }
+        catch (NullPointerException e) {
+            ErrorDialog dialog = new ErrorDialog("Error", "Choose a Session to join.", 220, 100);
+            dialog.show();
+        }
+
+
+    }
+private void openMain(){
+
+    Parent root;
+    Stage stage = (Stage) joinButton.getScene().getWindow();
+    try {
+        //assign session id
+        stage.close();
+        root = FXMLLoader.load(getClass().getResource("/com/link/resources/gui/main.fxml"));
+        stage = new Stage();
+        stage.setTitle("TuneUs");
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+    catch (IOException e) {
+        e.printStackTrace();
         }
     }
 }
