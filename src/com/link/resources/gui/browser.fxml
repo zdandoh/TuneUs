@@ -17,7 +17,7 @@
       <TextField id="search_bar" fx:id="search_bar" layoutX="130.0" layoutY="56.0" prefHeight="25.0" prefWidth="178.0" />
       <Button id="search_button" fx:id="search_button" layoutX="322.0" layoutY="56.0" mnemonicParsing="false" onAction="#searchTable" text="Search" />
       <Button fx:id="joinButton" layoutX="155.0" layoutY="359.0" mnemonicParsing="false" onAction="#joinAction" text="Join Session" />
-      <TableView id="data_table" fx:id="data_table" layoutX="16.0" layoutY="98.0" prefHeight="245.0" prefWidth="358.0">
+      <TableView id="data_table" fx:id="dataTable" layoutX="16.0" layoutY="98.0" prefHeight="245.0" prefWidth="358.0">
         <columns>
           <TableColumn fx:id="creator_column" minWidth="20.0" prefWidth="100.0" text="Creator" />
           <TableColumn fx:id="users_column" prefWidth="116.0" text="Users" />

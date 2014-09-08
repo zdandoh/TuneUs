@@ -29,7 +29,7 @@ public class BrowserController implements Initializable {
     @FXML private Button joinButton;
 
     @FXML
-    private TableView dataTable;
+    private TableView<TableData> dataTable;
 
     //table columns
 
