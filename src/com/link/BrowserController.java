@@ -102,6 +102,7 @@ public class BrowserController implements Initializable {
             TableData selected = (TableData) selectionModel.getSelectedItem();
             //do stuff with session_id
             System.out.println(selected.getID());
+            Main.session.session_id = selected.getID();
 
             openMain();
         }
