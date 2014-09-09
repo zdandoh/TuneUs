@@ -55,7 +55,7 @@ public class BrowserController implements Initializable {
         users_column.setCellValueFactory(
                 new PropertyValueFactory<TableData, String>("users"));
         recent_column.setCellValueFactory(
-                new PropertyValueFactory<TableData, String>("creation_time"));
+                new PropertyValueFactory<TableData, String>("recent"));
 
         dataTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -109,9 +109,8 @@ public class BrowserController implements Initializable {
             ErrorDialog dialog = new ErrorDialog("Error", "Choose a Session to join.", 220, 100);
             dialog.show();
         }
-
-
     }
+
 private void openMain(){
 
     Parent root;

@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 public class TableData {
     private SimpleStringProperty creator;
     private SimpleStringProperty users;
-    private SimpleStringProperty creation_time;
+    private SimpleStringProperty recent;
     private SimpleStringProperty session_id;
 
     public TableData(String table_info){
@@ -17,7 +17,7 @@ public class TableData {
         this.session_id = new SimpleStringProperty(table_array[0]);
         this.creator = new SimpleStringProperty(table_array[1]);
         this.users = new SimpleStringProperty(table_array[2]);
-        this.creation_time = new SimpleStringProperty(table_array[3]);
+        this.recent = new SimpleStringProperty(table_array[3]);
     }
 
     public String getCreator(){
@@ -29,7 +29,7 @@ public class TableData {
     }
 
     public String getRecent(){
-        return creation_time.get();
+        return recent.get();
     }
 
     public String getID(){
