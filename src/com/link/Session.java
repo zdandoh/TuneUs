@@ -71,6 +71,9 @@ public class Session {
             case "SEARCH_BY":
                 url = "http://tuneusserv.appspot.com/search_by.py";
                 break;
+            case "CHECK_QUEUE":
+                url = "http://tuneusserv.appspot.com/check_queue.py";
+                break;
             default:
                 throw new IllegalArgumentException("Url key not valid");
         }

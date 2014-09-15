@@ -42,6 +42,7 @@ public class MainController implements Initializable {
                 }
             }
         });
+        Queue main_queue = new Queue();
     }
 
     @FXML
