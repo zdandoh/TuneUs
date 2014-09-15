@@ -13,7 +13,10 @@ class Database():
         return data
 
     def deserialize(self, data):
-        data = data.split(",")
+        if not data:
+            data = []
+        else:
+            data = data.split(",")
         return data
 
     def isIDValid(self, session_id, length_check=True):

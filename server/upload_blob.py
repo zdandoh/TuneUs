@@ -3,6 +3,7 @@ import os
 import urllib
 import webapp2
 
+from time import time
 from database import Database
 from google.appengine.ext import blobstore
 from google.appengine.ext.webapp import blobstore_handlers
@@ -32,7 +33,7 @@ class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
         db = Database(connect=1)
         new_queue = db.deserialize(db.getData("queue", session_id))
         new_queue.append(str(blob_info.key()))
-        db.setData("queue", db.serialize(new_queue), session_id)
+        db.setData("queue", db.serialize("{0}:{1}".format(int(time()), new_queue)), session_id)
         self.response.out.write(blob_info.key())
 
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):

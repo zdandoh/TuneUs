@@ -17,6 +17,8 @@ handlers:
   script: add_video.py
 - url: /search_by.py
   script: search_by.py
+- url: /check_queue.py
+  script: check_queue.py
 - url: /blob/.*
   script: upload_blob.app
 

@@ -38,7 +38,7 @@ if __name__ == "__main__":
         session_id = getUniqueID()
         db = Database(connect=1)
         cursor = db.cursor()
-        cursor.execute('INSERT INTO data (id, creator, users) VALUES (%s, %s, %s)', (session_id, username, username + ''))
+        cursor.execute('INSERT INTO data (id, creator, users) VALUES (%s, %s, %s)', (session_id, username, username))
         db.commit()
         db.close()
         print session_id
