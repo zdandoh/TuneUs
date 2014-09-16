@@ -40,6 +40,15 @@ public class Session {
         return result;
     }
 
+    public void asyncReadPage(final String url){
+        Thread client_thread = new Thread(){
+            public void run(){
+                readPage(url);
+            }
+        };
+        client_thread.start();
+    }
+
     public String getBlobURL(String session_id) throws IOException{
         HttpGet get_request = new HttpGet("http://tuneusserv.appspot.com/blob/upload_blob.py?id=" + session_id);
         HttpResponse response = client.execute(get_request);
@@ -80,9 +89,8 @@ public class Session {
         return url;
     }
 
-    public boolean uploadBlob(String file_path, String session_id) throws IOException
+    public void uploadBlob(String file_path, String session_id) throws IOException
     {
-        boolean success = false;
         String blob_url = getBlobURL(session_id);
         blob_url = blob_url.replace("\n", "");
         HttpPost post_request = new HttpPost(blob_url);
@@ -104,6 +112,5 @@ public class Session {
                 break;
             str += (char) ch;
         }
-        return success;
     }
 }

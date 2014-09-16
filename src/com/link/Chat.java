@@ -6,8 +6,22 @@ import java.util.List;
 public class Chat {
     private List<String> chat_history = new ArrayList<String>();
 
+    public Chat(){
+        Thread chat_listener = new Thread(){
+            public void run(){
+                refreshChat();
+            }
+        };
+        chat_listener.start();
+    }
+
     public void refreshChat(){
         //download chat from server
+        //TODO: actually make this work
+        try{
+            Thread.sleep(1000);
+        }
+        catch(InterruptedException e){}
     }
 
     public String[] getChat(){
@@ -17,9 +31,5 @@ public class Chat {
             all_chat[message_no] = chat_history.get(message_no);
         }
         return all_chat;
-    }
-
-    public void sendMessage(){
-        //Send message to server
     }
 }

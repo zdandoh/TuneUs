@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
@@ -19,14 +20,14 @@
             <Button id="add_song" layoutX="193.0" layoutY="254.0" mnemonicParsing="false" onAction="#addSong" prefHeight="48.0" prefWidth="83.0" text="Add Song" />
             <Text layoutX="320.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Session ID:" />
             <TextArea id="id_box" fx:id="id_box" editable="false" layoutX="299.0" layoutY="278.0" prefHeight="25.0" prefWidth="99.0" text="none" />
-            <Text layoutX="185.0" layoutY="132.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="TuneUs" wrappingWidth="243.0">
-               <font>
-                  <Font name="Sound System Regular" size="72.0" />
-               </font>
-            </Text>
             <Rectangle id="percentage_cover" arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="17.0" layoutX="292.0" layoutY="192.0" stroke="#f4f4f4" strokeType="INSIDE" width="29.0" />
             <Slider id="volume_slider" layoutX="237.0" layoutY="231.0" value="65.0" />
             <Text layoutX="285.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volume:" />
+            <ImageView fitHeight="97.0" fitWidth="225.0" layoutX="193.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icon.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="412.0">
          <children>

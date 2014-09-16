@@ -37,12 +37,14 @@ public class MainController implements Initializable {
                         chat_bar.clear();
                         //Do stuff with the sent chat message
                         String data = String.format("?id=%s&message=%s", Main.session.session_id, message);
-                        Main.session.readPage(Main.session.getUrl("SEND_MESSAGE") + data);
+                        Main.session.asyncReadPage(Main.session.getUrl("SEND_MESSAGE") + data);
                     }
                 }
             }
         });
+        // initialize chat and queue listeners
         Queue main_queue = new Queue();
+        Chat main_chat = new Chat();
     }
 
     @FXML

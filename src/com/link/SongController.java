@@ -64,13 +64,17 @@ public class SongController implements Initializable {
             else{
                 stage.close();
                 //Do something with file
-                try {
-                    Main.session.uploadBlob(dirText.getText(), Main.session.session_id);
-                }
-                catch(IOException e) {
-                    ErrorDialog dialog = new ErrorDialog("Upload Error", "Failed to upload file.", 175, 100);
-                    dialog.show();
-                }
+                new Thread(){
+                    public void run(){
+                        try{
+                            Main.session.uploadBlob(dirText.getText(), Main.session.session_id);
+                        }
+                        catch(IOException e){
+                            ErrorDialog dialog = new ErrorDialog("Upload Error", "Failed to upload file.", 175, 100);
+                            dialog.show();
+                        }
+                    }
+                }.start();
             }
         }
         else if (tubeUrl.getText().length() > 0) {
@@ -78,7 +82,7 @@ public class SongController implements Initializable {
                 //do stuff with url
                 String tube_id[] = tubeUrl.getText().split("v=");
                 String data = String.format("?id=%s&video=%s", Main.session.session_id,tube_id[1]);
-                Main.session.readPage(Main.session.getUrl("ADD_VIDEO") + data);
+                Main.session.asyncReadPage(Main.session.getUrl("ADD_VIDEO") + data);
                 stage.close();
             }
             else{
