@@ -46,6 +46,7 @@ public class Session {
                 readPage(url);
             }
         };
+        client_thread.setDaemon(true);
         client_thread.start();
     }
 
@@ -87,6 +88,10 @@ public class Session {
                 throw new IllegalArgumentException("Url key not valid");
         }
         return url;
+    }
+
+    public static void getVideo(String id){
+
     }
 
     public void uploadBlob(String file_path, String session_id) throws IOException

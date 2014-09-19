@@ -14,6 +14,7 @@ public class Queue {
                 }
             }
         };
+        pollThread.setDaemon(true);
         pollThread.start();
         System.out.println("Polling thread initialized");
     }

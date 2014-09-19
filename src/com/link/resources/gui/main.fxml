@@ -15,7 +15,7 @@
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="382.0" prefWidth="433.0">
          <children>
-            <ProgressIndicator focusTraversable="false" layoutX="214.0" layoutY="36.0" prefHeight="173.0" prefWidth="184.0" progress="0.62" style="-fx-accent: #009999;" />
+            <ProgressIndicator fx:id="progressBar" id="progress_bar" focusTraversable="false" layoutX="214.0" layoutY="36.0" prefHeight="173.0" prefWidth="184.0" progress="0.62" style="-fx-accent: #009999;" />
             <ListView id="queue" editable="true" focusTraversable="false" layoutX="14.0" layoutY="14.0" prefHeight="290.0" prefWidth="161.0" />
             <Button id="add_song" layoutX="193.0" layoutY="254.0" mnemonicParsing="false" onAction="#addSong" prefHeight="48.0" prefWidth="83.0" text="Add Song" />
             <Text layoutX="320.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Session ID:" />

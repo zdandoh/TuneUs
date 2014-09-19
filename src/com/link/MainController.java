@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -57,6 +58,9 @@ public class MainController implements Initializable {
     private TextArea chat_history;
 
     @FXML
+    public ProgressIndicator progressBar;
+
+    @FXML
     private void addSong(){
         Parent root;
         try {
@@ -69,4 +73,7 @@ public class MainController implements Initializable {
         } catch (IOException e) {e.printStackTrace();}
     }
 
+    public void setProgress(int degree){
+        progressBar.setProgress(degree);
+    }
 }

@@ -33,8 +33,8 @@ public class SongController implements Initializable {
                 FileChooser.ExtensionFilter mFilter = new FileChooser.ExtensionFilter("MP3 files (*.mp3)", "*.mp3");
                 FileChooser.ExtensionFilter fFilter = new FileChooser.ExtensionFilter("FLAC files (*.flac)", "*.flac");
 
-                fileChooser.getExtensionFilters().add(fFilter);
                 fileChooser.getExtensionFilters().add(mFilter);
+                fileChooser.getExtensionFilters().add(fFilter);
 
                 file = fileChooser.showOpenDialog(null);
 
@@ -64,6 +64,7 @@ public class SongController implements Initializable {
             else{
                 stage.close();
                 //Do something with file
+                Main.player.playAsync(dirText.getText());
                 new Thread(){
                     public void run(){
                         try{

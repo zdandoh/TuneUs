@@ -12,6 +12,7 @@ public class Chat {
                 refreshChat();
             }
         };
+        chat_listener.setDaemon(true);
         chat_listener.start();
     }
 
