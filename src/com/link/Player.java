@@ -21,11 +21,12 @@ import java.net.URI;
  * Created by Dan on 9/17/2014.
  */
 public class Player {
+    private MediaPlayer media_player;
     public void play(String file){
         File raw_file = new File(file);
         URI file_uri = raw_file.toURI();
         Media song = new Media(file_uri.toString());
-        MediaPlayer player = new MediaPlayer(song);
+        media_player = new MediaPlayer(song);
         //set progress indicator updating thread
         final int song_length = getLength(file);
         Thread progress_updater = new Thread(){
@@ -35,7 +36,18 @@ public class Player {
         };
         progress_updater.setDaemon(true);
         //progress_updater.start();
-        player.play();
+        media_player.play();
+        try{
+            Thread.sleep(song_length * 1000 + 10000);
+        }
+        catch(InterruptedException e){
+            System.out.println("Playing thread interrupted");
+        }
+    }
+
+    public void setVolume(double volume_level){
+        volume_level /= 100;
+        media_player.setVolume(volume_level);
     }
 
     public void playAsync(final String file){

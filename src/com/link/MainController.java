@@ -1,5 +1,7 @@
 package com.link;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 
@@ -9,12 +11,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import sun.plugin2.ipc.Event;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,6 +49,13 @@ public class MainController implements Initializable {
                 }
             }
         });
+        volume_slider.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                double new_volume = volume_slider.getValue();
+                //Main.player.setVolume(new_volume);
+            }
+        });
         // initialize chat and queue listeners
         Queue main_queue = new Queue();
         Chat main_chat = new Chat();
@@ -56,6 +69,9 @@ public class MainController implements Initializable {
 
     @FXML
     private TextArea chat_history;
+
+    @FXML
+    private Slider volume_slider;
 
     @FXML
     public ProgressIndicator progressBar;
