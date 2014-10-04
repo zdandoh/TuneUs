@@ -57,7 +57,6 @@ public class MainController implements Initializable {
             }
         });
         // initialize chat and queue listeners
-        Queue main_queue = new Queue();
         Chat main_chat = new Chat();
     }
 

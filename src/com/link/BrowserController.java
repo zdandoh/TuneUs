@@ -76,7 +76,6 @@ public class BrowserController implements Initializable {
                 }
             }
         });
-
     }
 
     @FXML
@@ -101,7 +100,6 @@ public class BrowserController implements Initializable {
             TableView.TableViewSelectionModel selectionModel = dataTable.getSelectionModel();
             TableData selected = (TableData) selectionModel.getSelectedItem();
             //do stuff with session_id
-            System.out.println(selected.getID());
             Main.session.session_id = selected.getID();
 
             openMain();

@@ -50,14 +50,20 @@ public class Player {
         media_player.setVolume(volume_level);
     }
 
-    public void playAsync(final String file){
-        Thread currently_playing = new Thread(){
-            public void run(){
-                play(file);
+    public void playAsync(){
+        //checks for songs to play from song queue
+        while(true){
+            final String next_song = Main.queue.getNextSong();
+            if(next_song.length() > 0){
+                Thread currently_playing = new Thread(){
+                    public void run(){
+                        play(next_song);
+                    }
+                };
+                currently_playing.setDaemon(true);
+                currently_playing.start();
             }
-        };
-        currently_playing.setDaemon(true);
-        currently_playing.start();
+        }
     }
 
     public int getLength(String file) {
@@ -69,6 +75,7 @@ public class Player {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(duration);
         return duration;
     }
 

@@ -11,25 +11,36 @@ public class Queue {
             public void run(){
                 while (true){
                     pollQueue();
+                    try {
+                        Thread.sleep(1000);
+                    }
+                    catch(InterruptedException e){
+                        System.out.println("Polling thread interrupted");
+                    }
                 }
             }
         };
         pollThread.setDaemon(true);
         pollThread.start();
-        System.out.println("Polling thread initialized");
     }
 
     public String getNextSong()
     {
-        String next_song = "none";
+        String next_song = "";
         if(songs.size() == 0) {
             return next_song;
         }
         else{
             next_song = (String)songs.get(0);
-            songs.remove(0);
-            return next_song;
+            if(Integer.parseInt(next_song.split(":")[0]) >= System.currentTimeMillis() / 1000L){
+                songs.remove(0);
+                return next_song;
+            }
+            else{
+                next_song = "";
+            }
         }
+        return next_song;
     }
 
     public boolean addSong(String name)
@@ -50,6 +61,7 @@ public class Queue {
                 //failed page load conditional should be removed once server actually works right
                 if (song.length() > 0 && !song.equals("failed page load")){
                     songs.add(song);
+                    System.out.println(song);
                 }
             }
         }

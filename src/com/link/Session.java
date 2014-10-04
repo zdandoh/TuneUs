@@ -94,7 +94,7 @@ public class Session {
 
     }
 
-    public void uploadBlob(String file_path, String session_id) throws IOException
+    public void uploadBlob(String file_path, String session_id, int song_length) throws IOException
     {
         String blob_url = getBlobURL(session_id);
         blob_url = blob_url.replace("\n", "");
@@ -106,6 +106,7 @@ public class Session {
         multipart.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         multipart.addPart("file", file_body);
         multipart.addTextBody("id", session_id);
+        multipart.addTextBody("length", Integer.toString(song_length));
         post_request.setEntity(multipart.build());
         HttpResponse response = client.execute(post_request);
         HttpEntity ent = response.getEntity();

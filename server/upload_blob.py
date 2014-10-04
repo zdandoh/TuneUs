@@ -2,6 +2,7 @@ import cgi
 import os
 import urllib
 import webapp2
+import logging
 
 from time import time
 from database import Database
@@ -16,11 +17,14 @@ class MainHandler(webapp2.RequestHandler):
         form = cgi.FieldStorage()
         session_id = form.getvalue("id")
         if db.sessionExists(session_id):
-            if len(db.getData("queue", session_id)) < 10:
+            queue = db.deserialize(db.getData("queue", session_id))
+            if len(queue) < 10:
                 upload_url = blobstore.create_upload_url('/blob/upload')
                 self.response.out.write(upload_url)
             else:
                 self.response.out.write("queue limit reached")
+                logging.debug(queue)
+                logging.debug(len(queue))
         else:
             self.response.out.write("invalid session id")
 
@@ -28,12 +32,14 @@ class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
     def post(self):
         upload_files = self.get_uploads('file')  # 'file' is file upload field in the form
         session_id = self.request.get('id')
+        song_length = self.request.get('length')
         blob_info = upload_files[0]
 
         db = Database(connect=1)
         new_queue = db.deserialize(db.getData("queue", session_id))
-        new_queue.append(str(blob_info.key()))
-        db.setData("queue", db.serialize("{0}:{1}".format(int(time()), new_queue)), session_id)
+        timestamp = int(time())
+        new_queue.append("{0}:{1}:{2}".format(timestamp, str(blob_info.key()), song_length))
+        db.setData("queue", db.serialize(new_queue), session_id)
         self.response.out.write(blob_info.key())
 
 class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):

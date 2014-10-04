@@ -64,11 +64,11 @@ public class SongController implements Initializable {
             else{
                 stage.close();
                 //Do something with file
-                Main.player.playAsync(dirText.getText());
+                final int song_length = Main.player.getLength(dirText.getText());
                 new Thread(){
                     public void run(){
                         try{
-                            Main.session.uploadBlob(dirText.getText(), Main.session.session_id);
+                            Main.session.uploadBlob(dirText.getText(), Main.session.session_id, song_length);
                         }
                         catch(IOException e){
                             ErrorDialog dialog = new ErrorDialog("Upload Error", "Failed to upload file.", 175, 100);
