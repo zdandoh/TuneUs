@@ -18,7 +18,7 @@ if db.sessionExists(session_id) and last_poll:
                 queue = [item.split(":") for item in queue]
                 for item in queue:
                     if int(item[0]) > int(last_poll):
-                        print "%s:%s" % (item[0], item[1])
+                        print ":".join(item)
                         new_songs = True
             if not new_songs:
                 db.connect()

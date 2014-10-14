@@ -38,7 +38,16 @@ class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
         db = Database(connect=1)
         new_queue = db.deserialize(db.getData("queue", session_id))
         timestamp = int(time())
-        new_queue.append("{0}:{1}:{2}".format(timestamp, str(blob_info.key()), song_length))
+        play_time = timestamp + 2
+        if new_queue:
+            last_song_data = new_queue[-1].split(":")
+            last_song_len = last_song_data[2]
+            last_song_playtime = last_song_data[3]
+            play_time = int(last_song_playtime) + int(last_song_len)
+            if play_time < timestamp:
+                # song should have started playing in the past
+                play_time = timestamp + 2
+        new_queue.append("{0}:{1}:{2}:{3}".format(timestamp, str(blob_info.key()), song_length, play_time))
         db.setData("queue", db.serialize(new_queue), session_id)
         self.response.out.write(blob_info.key())
 

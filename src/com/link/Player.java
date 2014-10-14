@@ -75,7 +75,6 @@ public class Player {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(duration);
         return duration;
     }
 

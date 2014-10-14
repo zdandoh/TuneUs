@@ -13,6 +13,7 @@ class Database():
         return data
 
     def deserialize(self, data):
+        #data structure for queue is added_timestamp:key:media_length:play_time
         if not data:
             data = []
         else:
