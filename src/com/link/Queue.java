@@ -32,7 +32,7 @@ public class Queue {
         }
         else{
             next_song = (String)songs.get(0);
-            if(Integer.parseInt(next_song.split(":")[0]) >= System.currentTimeMillis() / 1000L){
+            if(Integer.parseInt(next_song.split(":")[3]) <= System.currentTimeMillis() / 1000L){
                 songs.remove(0);
                 return next_song;
             }
@@ -61,7 +61,6 @@ public class Queue {
                 //failed page load conditional should be removed once server actually works right
                 if (song.length() > 0 && !song.equals("failed page load")){
                     songs.add(song);
-                    System.out.println(song);
                 }
             }
         }

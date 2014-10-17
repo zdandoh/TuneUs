@@ -55,7 +55,7 @@ class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
     def get(self, resource):
         resource = str(urllib.unquote(resource))
         blob_info = blobstore.BlobInfo.get(resource)
-        self.send_blob(blob_info)
+        self.send_blob(blob_info, save_as="audio_file.mp3")
 
 app = webapp2.WSGIApplication([('/blob/upload_blob.py?', MainHandler),
                                ('/blob/upload', UploadHandler),

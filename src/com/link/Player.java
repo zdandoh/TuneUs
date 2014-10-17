@@ -11,24 +11,34 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 
 /**
  * Created by Dan on 9/17/2014.
  */
 public class Player {
     private MediaPlayer media_player;
-    public void play(String file){
-        File raw_file = new File(file);
-        URI file_uri = raw_file.toURI();
-        Media song = new Media(file_uri.toString());
+    public Player(){
+        Thread play_checker = new Thread(){
+            public void run(){
+                playAsync();
+            }
+        };
+        play_checker.setDaemon(true);
+        play_checker.start();
+    }
+    public void play(String url){
+        System.out.println(url);
+        Media song = new Media(url);
         media_player = new MediaPlayer(song);
         //set progress indicator updating thread
-        final int song_length = getLength(file);
+        final int song_length = 1; //getLength(file); I broke this
         Thread progress_updater = new Thread(){
             public void run(){
                 updateProgress(song_length);
@@ -37,12 +47,6 @@ public class Player {
         progress_updater.setDaemon(true);
         //progress_updater.start();
         media_player.play();
-        try{
-            Thread.sleep(song_length * 1000 + 10000);
-        }
-        catch(InterruptedException e){
-            System.out.println("Playing thread interrupted");
-        }
     }
 
     public void setVolume(double volume_level){
@@ -50,18 +54,44 @@ public class Player {
         media_player.setVolume(volume_level);
     }
 
+    public String getAudio(String url){
+        String file_name = "latest.mp3";
+        try {
+            URL website = new URL(url);
+            ReadableByteChannel channel = Channels.newChannel(website.openStream());
+            FileOutputStream stream = new FileOutputStream(file_name);
+            stream.getChannel().transferFrom(channel, 0, Long.MAX_VALUE);
+        }
+        catch(Exception e){
+            System.out.println("AUDIO FILE DOWNLOAD FAILED");
+        }
+        return file_name;
+    }
+
+    public String getURLFromID(String id){
+        String url = "";
+        if (id.startsWith("yt")){
+            // youtube ID
+            System.out.println("YOUTUBE URLS NOT YET SUPPORTED");
+        }
+        else{
+            // blobstore ID
+            url = "http://tuneusserv.appspot.com/blob/serve/" + id;
+        }
+        return url;
+    }
+
     public void playAsync(){
         //checks for songs to play from song queue
         while(true){
+            try {
+                Thread.sleep(1000);
+            }
+            catch(InterruptedException e){
+                System.out.println("nen");}
             final String next_song = Main.queue.getNextSong();
             if(next_song.length() > 0){
-                Thread currently_playing = new Thread(){
-                    public void run(){
-                        play(next_song);
-                    }
-                };
-                currently_playing.setDaemon(true);
-                currently_playing.start();
+                play(getURLFromID(next_song.split(":")[1]));
             }
         }
     }
