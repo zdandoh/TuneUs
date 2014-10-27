@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Queue {
-    private List<String> songs = new ArrayList<String>();
+    private List<Song> songs = new ArrayList<Song>();
 
     public Queue(){
         Thread pollThread = new Thread(){
@@ -24,29 +24,23 @@ public class Queue {
         pollThread.start();
     }
 
-    public String getNextSong()
+    public Song getNextSong()
     {
-        String next_song = "";
+        String next_song_data = "";
         if(songs.size() == 0) {
-            return next_song;
+            return new Song();
         }
         else{
-            next_song = (String)songs.get(0);
-            if(Integer.parseInt(next_song.split(":")[3]) <= System.currentTimeMillis() / 1000L){
+            Song next_song = songs.get(0);
+            if(next_song.play_timestamp <= System.currentTimeMillis() / 1000L && next_song.song_ready){
                 songs.remove(0);
                 return next_song;
             }
             else{
-                next_song = "";
+                next_song_data = "";
             }
         }
-        return next_song;
-    }
-
-    public boolean addSong(String name)
-    {
-        songs.add(name);
-        return true;
+        return new Song();
     }
 
     public void pollQueue(){
@@ -60,7 +54,8 @@ public class Queue {
             for(String song: new_songs){
                 //failed page load conditional should be removed once server actually works right
                 if (song.length() > 0 && !song.equals("failed page load")){
-                    songs.add(song);
+                    Song new_song = new Song(song);
+                    songs.add(new_song);
                 }
             }
         }

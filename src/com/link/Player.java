@@ -3,6 +3,7 @@ package com.link;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
@@ -33,14 +34,14 @@ public class Player {
         play_checker.setDaemon(true);
         play_checker.start();
     }
-    public void play(String url){
-        System.out.println(url);
-        Media song = new Media(url);
+    public void play(String path){
+        System.out.println(path);
+        Media song = new Media(path);
         media_player = new MediaPlayer(song);
         //set progress indicator updating thread
         final int song_length = 1; //getLength(file); I broke this
-        Thread progress_updater = new Thread(){
-            public void run(){
+        Thread progress_updater = new Thread() {
+            public void run() {
                 updateProgress(song_length);
             }
         };
@@ -52,20 +53,6 @@ public class Player {
     public void setVolume(double volume_level){
         volume_level /= 100;
         media_player.setVolume(volume_level);
-    }
-
-    public String getAudio(String url){
-        String file_name = "latest.mp3";
-        try {
-            URL website = new URL(url);
-            ReadableByteChannel channel = Channels.newChannel(website.openStream());
-            FileOutputStream stream = new FileOutputStream(file_name);
-            stream.getChannel().transferFrom(channel, 0, Long.MAX_VALUE);
-        }
-        catch(Exception e){
-            System.out.println("AUDIO FILE DOWNLOAD FAILED");
-        }
-        return file_name;
     }
 
     public String getURLFromID(String id){
@@ -89,9 +76,10 @@ public class Player {
             }
             catch(InterruptedException e){
                 System.out.println("nen");}
-            final String next_song = Main.queue.getNextSong();
-            if(next_song.length() > 0){
-                play(getURLFromID(next_song.split(":")[1]));
+            final Song next_song = Main.queue.getNextSong();
+            if(next_song.play_timestamp > -1){
+                URI uri = new File(next_song.path).toURI();
+                play(uri.toString());
             }
         }
     }

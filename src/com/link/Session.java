@@ -11,9 +11,12 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 
 public class Session {
     public String session_id = "";
@@ -38,6 +41,21 @@ public class Session {
         } catch (IOException e){
         }
         return result;
+    }
+
+    public boolean getFile(String url, String path){
+        boolean success = true;
+        try {
+            URL dl_link = new URL(url);
+            ReadableByteChannel rbc = Channels.newChannel(dl_link.openStream());
+            FileOutputStream fos = new FileOutputStream(path);
+            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+        }
+        catch(Exception e){
+            System.out.println("download failed");
+            success = false;
+        }
+        return success;
     }
 
     public void asyncReadPage(final String url){
@@ -88,10 +106,6 @@ public class Session {
                 throw new IllegalArgumentException("Url key not valid");
         }
         return url;
-    }
-
-    public static void getVideo(String id){
-
     }
 
     public void uploadBlob(String file_path, String session_id, int song_length) throws IOException

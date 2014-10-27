@@ -3,3 +3,4 @@ deploy.bat
 out
 *.pyc
 Thumbs.db
+cache/*.mp3
