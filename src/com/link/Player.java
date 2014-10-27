@@ -35,7 +35,6 @@ public class Player {
         play_checker.start();
     }
     public void play(String path){
-        System.out.println(path);
         Media song = new Media(path);
         media_player = new MediaPlayer(song);
         //set progress indicator updating thread
