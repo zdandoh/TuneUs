@@ -4,3 +4,4 @@ out
 *.pyc
 Thumbs.db
 cache/*.mp3
+cache/*.part

@@ -5,6 +5,7 @@ class Database():
     def __init__(self, connect=False):
         self.connected = False
         self.db = None
+        self.PLAY_OFFSET = 10
         if connect:
             self.connect()
 

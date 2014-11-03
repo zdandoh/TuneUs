@@ -1,5 +1,6 @@
 package com.link;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -46,6 +47,15 @@ public class Player {
         };
         progress_updater.setDaemon(true);
         //progress_updater.start();
+        if (Main.queue.listview_data.size() > 1){
+            // remove last song from listing
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    Main.queue.listview_data.remove(0);
+                }
+            });
+        }
         media_player.play();
     }
 
@@ -101,7 +111,7 @@ public class Player {
         try{
             Pane main_pane = fxmlLoader.load(getClass().getResource("/com/link/resources/gui/main.fxml").openStream());
         }
-        catch(IOException e){
+        catch(Exception e){
             System.out.println("Unable to load main controller class");
         }
         MainController main_control = (MainController) fxmlLoader.getController();

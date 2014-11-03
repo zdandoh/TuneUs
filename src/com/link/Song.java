@@ -10,6 +10,7 @@ public class Song {
     public String raw;
     public String id;
     public String path;
+    public String file_name = "unknown";
     public int play_timestamp;
     public boolean song_ready = false;
     public boolean is_youtube = false;
@@ -45,6 +46,12 @@ public class Song {
                     if(fi.exists() && !fi.isDirectory()){
                         song_ready = true;
                         exists = true;
+                        try{
+                            Thread.sleep(100);
+                        }
+                        catch(InterruptedException e){
+                            System.out.println(e);
+                        }
                     }
                 }
             }

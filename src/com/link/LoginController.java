@@ -48,10 +48,10 @@ public class LoginController implements Initializable{
 
         try {
             stage.close();
-            root = FXMLLoader.load(getClass().getResource("/com/link/resources/gui/main.fxml"));
+            Main.root = FXMLLoader.load(getClass().getResource("/com/link/resources/gui/main.fxml"));
             stage = new Stage();
             stage.setTitle("TuneUs");
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(Main.root));
             stage.show();
         } catch (IOException e) {e.printStackTrace();}
     }

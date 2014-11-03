@@ -2,6 +2,7 @@ package com.link;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 
@@ -10,14 +11,12 @@ import javafx.fxml.Initializable;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import sun.plugin2.ipc.Event;
 
 import java.awt.event.MouseEvent;
@@ -33,6 +32,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         id_box.setText(Main.session.session_id);
+        queue.setItems(Main.queue.listview_data);
         // Setup chat bar event handler
         chat_bar.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -73,7 +73,15 @@ public class MainController implements Initializable {
     private Slider volume_slider;
 
     @FXML
+    private ListView queue;
+
+    @FXML
     public ProgressIndicator progressBar;
+
+    @FXML
+    public void setVolume(int level){
+        volume_slider.setValue(0);
+    }
 
     @FXML
     private void addSong(){

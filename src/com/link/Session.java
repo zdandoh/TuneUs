@@ -83,6 +83,16 @@ public class Session {
         return str;
     }
 
+    public String getVideoTitle(String id){
+        String title = "unknown";
+        if(id.startsWith("yt")){
+            id = id.split(";")[1];
+        }
+        String page_src = readPage(String.format("http://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=jsonc&prettyprint=true", id));
+        title = page_src.split("title\": \"")[1].split("\",")[0]; //lol this is so ghetto
+        return title;
+    }
+
     public String getUrl(String key) throws IllegalArgumentException{
         //Gets API urls by key
         String url = "";
@@ -120,6 +130,7 @@ public class Session {
         multipart.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         multipart.addPart("file", file_body);
         multipart.addTextBody("id", session_id);
+        multipart.addTextBody("fi_name", audio_file.getName());
         multipart.addTextBody("length", Integer.toString(song_length));
         post_request.setEntity(multipart.build());
         HttpResponse response = client.execute(post_request);
