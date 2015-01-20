@@ -28,9 +28,9 @@ import javafx.stage.StageStyle;
 
 public class ErrorDialog extends Stage {
 
-    public ErrorDialog(String title, String message, int width, int height) {
+    public ErrorDialog(String title, String message, int width, int height, boolean ... is_update_dialog) {
         super();
-		
+        final boolean update_dialog = is_update_dialog[0];
         BorderPane pane = new BorderPane();
 
         Image img = new Image("/com/link/resources/gui/images/errorIcon.png");
@@ -44,6 +44,9 @@ public class ErrorDialog extends Stage {
             @Override
             public void handle(ActionEvent ae) {
                 close();
+                if (update_dialog){
+                    System.exit(0);
+                }
             }
         });
 

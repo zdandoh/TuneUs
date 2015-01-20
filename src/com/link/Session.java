@@ -112,6 +112,12 @@ public class Session {
             case "CHECK_QUEUE":
                 url = "http://tuneusserv.appspot.com/check_queue.py";
                 break;
+            case "CHECK_VERSION":
+                url = "http://tuneusserv.appspot.com/update/latest_version.txt";
+                break;
+            case "GET_JAR":
+                url = "http://tuneusserv.appspot.com/update/jars/";
+                break;
             default:
                 throw new IllegalArgumentException("Url key not valid");
         }

@@ -19,6 +19,8 @@ handlers:
   script: check_queue.app
 - url: /blob/.*
   script: upload_blob.app
+- url: /update
+  static_dir: update
 
 
 libraries:
