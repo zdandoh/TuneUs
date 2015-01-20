@@ -9,7 +9,8 @@ import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    public static final double VERSION_NUMBER = 1.0; // -1 while in dev
+    public static final double VERSION_NUMBER = 1.0;
+    public static final boolean DEV = true;
     public static Session session = new Session();
     public static Player player = new Player();
     public static Queue queue = new Queue();
