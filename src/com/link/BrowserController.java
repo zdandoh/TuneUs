@@ -19,9 +19,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Created by Chris on 9/3/2014.
- */
 public class BrowserController implements Initializable {
 
     @FXML private Button joinButton;

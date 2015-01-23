@@ -24,9 +24,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Created by Chris on 8/25/2014.
- */
 public class MainController implements Initializable {
     String user = String.format("<%s> ", LoginController.nickname);
     @Override

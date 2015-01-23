@@ -3,9 +3,6 @@ package com.link;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * Created by Dan on 10/25/2014.
- */
 public class Song {
     public String raw;
     public String id;

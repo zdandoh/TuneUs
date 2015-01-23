@@ -5,6 +5,9 @@ api_version: 1
 threadsafe: yes
 
 handlers:
+- url: /favicon.ico
+  static_files: site/favicon.ico
+  upload: site/favicon.ico
 - url: /create_session.py
   script: create_session.app
 - url: /get_session.py

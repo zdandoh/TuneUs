@@ -21,9 +21,6 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
-/**
- * Created by Dan on 9/17/2014.
- */
 public class Player {
     private MediaPlayer media_player;
     private double volume = 1;
