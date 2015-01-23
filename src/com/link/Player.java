@@ -80,11 +80,7 @@ public class Player {
     public void playAsync(){
         //checks for songs to play from song queue
         while(true){
-            try {
-                Thread.sleep(1000);
-            }
-            catch(InterruptedException e){
-                System.out.println("nen");}
+            Main.sleep(1000);
             final Song next_song = Main.queue.getNextSong();
             if(next_song.play_timestamp > -1){
                 URI uri = new File(next_song.path).toURI();
@@ -116,12 +112,7 @@ public class Player {
         }
         MainController main_control = (MainController) fxmlLoader.getController();
         while(progress < 360){
-            try{
-                Thread.sleep(1000);
-            }
-            catch(InterruptedException e){
-                System.out.println("Update thread interrupted");
-            }
+            Main.sleep(1000);
             main_control.setProgress(progress);
         }
     }

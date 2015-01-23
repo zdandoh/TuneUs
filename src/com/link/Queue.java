@@ -18,14 +18,16 @@ public class Queue {
         Thread pollThread = new Thread(){
             public void run(){
                 while (true){
+                    if(Main.session.session_id.equals("none")){
+                        // stop from polling before joining a session
+                        Main.sleep(100);
+                        continue;
+
+                    }
                     pollQueue();
-                    try {
-                        Thread.sleep(poll_interval);
-                    }
-                    catch(InterruptedException e){
-                        System.out.println("Polling thread interrupted");
-                    }
+                    Main.sleep(poll_interval);
                     if(inactive_counter > 30){
+                        System.out.println(inactive_counter);
                         //no songs have been posted, going into "sleep mode"
                         poll_interval *= 2; // double interval after every idle request past this point
                         System.out.println("Sleep mode active, delay: " + poll_interval);

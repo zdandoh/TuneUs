@@ -19,10 +19,7 @@ public class Chat {
     public void refreshChat(){
         //download chat from server
         //TODO: actually make this work
-        try{
-            Thread.sleep(1000);
-        }
-        catch(InterruptedException e){}
+        Main.sleep(1000);
     }
 
     public String[] getChat(){

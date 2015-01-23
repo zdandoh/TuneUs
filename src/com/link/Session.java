@@ -19,7 +19,7 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
 public class Session {
-    public String session_id = "";
+    public String session_id = "none";
     HttpClient client = new DefaultHttpClient();
 
     public String readPage(String url_string){

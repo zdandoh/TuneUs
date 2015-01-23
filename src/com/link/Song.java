@@ -46,12 +46,7 @@ public class Song {
                     if(fi.exists() && !fi.isDirectory()){
                         song_ready = true;
                         exists = true;
-                        try{
-                            Thread.sleep(100);
-                        }
-                        catch(InterruptedException e){
-                            System.out.println(e);
-                        }
+                        Main.sleep(100);
                     }
                 }
             }

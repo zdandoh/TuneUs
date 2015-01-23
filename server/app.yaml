@@ -21,6 +21,9 @@ handlers:
   script: upload_blob.app
 - url: /update
   static_dir: update
+- url: /
+  static_files: site/index.html
+  upload: site/index.html
 
 
 libraries:

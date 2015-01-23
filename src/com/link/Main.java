@@ -34,4 +34,13 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    public static void sleep(long ms){
+        try {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException e){
+            System.out.println("Sleep interrupt");
+        }
+    }
 }

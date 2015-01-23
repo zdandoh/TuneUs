@@ -4,5 +4,7 @@ out
 *.pyc
 Thumbs.db
 cache/*.mp3
+cache/*.m4a
 cache/*.part
 server/update/jars/*.jar
+server/update/*.zip
