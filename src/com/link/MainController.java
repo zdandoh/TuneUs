@@ -53,7 +53,7 @@ public class MainController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 double new_volume = volume_slider.getValue();
-                //Main.player.setVolume(new_volume);
+                Main.player.setVolume(new_volume);
             }
         });
         // initialize chat and queue listeners

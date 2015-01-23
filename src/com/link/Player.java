@@ -26,6 +26,7 @@ import java.nio.channels.ReadableByteChannel;
  */
 public class Player {
     private MediaPlayer media_player;
+    private double volume = 1;
     public Player(){
         Thread play_checker = new Thread(){
             public void run(){
@@ -38,6 +39,7 @@ public class Player {
     public void play(String path){
         Media song = new Media(path);
         media_player = new MediaPlayer(song);
+        media_player.setVolume(volume);
         //set progress indicator updating thread
         final int song_length = 1; //getLength(file); I broke this
         Thread progress_updater = new Thread() {
@@ -60,7 +62,8 @@ public class Player {
     }
 
     public void setVolume(double volume_level){
-        volume_level /= 100;
+        volume_level /= 100.;
+        this.volume = volume_level;
         media_player.setVolume(volume_level);
     }
 

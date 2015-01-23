@@ -80,4 +80,8 @@ public class Song {
             downloader.start();
         }
     }
+
+    public void printSong(){
+        System.out.println(this.raw);
+    }
 }

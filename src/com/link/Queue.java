@@ -71,7 +71,9 @@ public class Queue {
                 //failed page load conditional should be removed once server actually works right
                 if (song.length() > 0 && !song.equals("failed page load")){
                     Song new_song = new Song(song);
+
                     songs.add(new_song);
+                    new_song.printSong();
                     final String song_name;
                     if(new_song.id.startsWith("yt")){
                         song_name = Main.session.getVideoTitle(new_song.id);
